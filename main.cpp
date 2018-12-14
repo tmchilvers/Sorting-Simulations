@@ -4,6 +4,9 @@
 #include <fstream>
 #include "FileIO.h"
 #include "QuickSort.h"
+#include "InsertionSort.h"
+#include "BubbleSort.h"
+#include "SelectionSort.h"
 
 
 using namespace std;
@@ -45,6 +48,12 @@ int main(int argc, char const *argv[]) {
     data4[i] = stod(line);
     i++;
   }
+
+  BubbleSort bubbleSort(data, size);
+  SelectionSort selectionSort(data2, size);
+  InsertionSort insertionSort(data3, size);
+  QuickSort quickSort(data4, 0, size - 1);
+
 
   return 0;
 }

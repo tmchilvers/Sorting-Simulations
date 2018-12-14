@@ -1,47 +1,67 @@
-#ifndef QUICKSORT_H
-#define QUICKSORT_H
-
 #include <ctime>
+#include <iostream>
+
 using namespace std;
 
-//template class================================================================
-template <class T>
 class QuickSort
 {
   public:
-    QuickSort(T array[]);
+    QuickSort(double* a, int l, int h);
     ~QuickSort();
+    void sort(double* a, int l, int h);
+    int partition(double* a, int l, int h);
 
-    void sort();
-    double getDuration();
-
-  private:
-    double duration;
+    int time;
+    int timeStart;
 };
 
-//template functions============================================================
-template <class T>
-QuickSort<T>::QuickSort(T array[])
-{
-  sort();
-}
-
-template <class T>
-QuickSort<T>::~QuickSort()
+QuickSort::QuickSort(double* a, int l, int h)
 {
 
+  int timeStart = clock();
+  sort(a, l, h);
 }
 
-template <class T>
-void QuickSort<T>::sort()
+QuickSort::~QuickSort()
 {
-
+  int timeEnd = clock();
+  time = timeEnd - timeStart;
+  double timeFinal = ((float)time) / CLOCKS_PER_SEC;
+  cout << "QuickSort" << endl;
+  cout << "Start: " << timeStart << endl;
+  cout << "End: " << timeEnd << endl;
+  cout << "It took " << time << endl << endl;
 }
 
-template <class T>
-double QuickSort<T>::getDuration()
+void QuickSort::sort(double* a, int l, int h)
 {
-  return duration;
+  if(l < h)
+  {
+    int p = partition(a, l, h);
+
+    sort(a, l, p - 1);
+    sort(a, p + 1, h);
+  }
 }
 
-#endif
+int QuickSort::partition(double* a, int l, int h)
+{
+  double pivot = a[h];
+  int i = (l - 1);
+
+  for(int j = l; j <= h-1; j++)
+  {
+    if(a[j] <= pivot)
+    {
+      i++;
+      double temp = a[i];
+      a[i] = a[j];
+      a[j] = temp;
+    }
+  }
+  double temp = a[i+1];
+  a[i+1] = a[h];
+  a[h] = temp;
+
+  return i + 1;
+}
