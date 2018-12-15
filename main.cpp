@@ -37,7 +37,10 @@ int main(int argc, char const *argv[]) {
 
   //set array to size from files
   int size = stoi(line);
-  double data[size], data2[size], data3[size], data4[size];
+  double* data = new double[size];
+  double* data2 = new double[size];
+  double* data3 = new double[size];
+  double* data4 = new double[size];
   int i = 0;
 
   //input file data into arrays
@@ -55,7 +58,7 @@ int main(int argc, char const *argv[]) {
   InsertionSort insertionSort(data3, size);
   QuickSort quickSort(data4, 0, size - 1);
 
-  delete data, data2, data3, data4;
+  delete[] data, data2, data3, data4;
 
   return 0;
 }
