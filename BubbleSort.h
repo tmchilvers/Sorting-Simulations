@@ -1,5 +1,10 @@
+#include <chrono>
+#include <ratio>
 #include <ctime>
 #include <iostream>
+
+using namespace std;
+using namespace std::chrono;
 
 class BubbleSort
 {
@@ -8,25 +13,21 @@ class BubbleSort
     ~BubbleSort();
     void sort(double* a, int size);
 
-    int time;
-    int timeStart;
 };
 
 BubbleSort::BubbleSort(double* a, int size)
 {
-  int timeStart = clock();
+  high_resolution_clock::time_point t1 = high_resolution_clock::now();
   sort(a, size);
+  high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
+  duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+  cout << "BubbleSort\nTime:  " << time_span.count() << " seconds.\n" << endl;
 }
 
 BubbleSort::~BubbleSort()
 {
-  int timeEnd = clock();
-  time = timeEnd - timeStart;
-  time = ((float)time) / CLOCKS_PER_SEC;
-  cout << "BubbleSort" << endl;
-  cout << "Start: " << timeStart << endl;
-  cout << "End: " << timeEnd << endl;
-  cout << "It took " << time << endl << endl;
+
 }
 
 void BubbleSort::sort(double* a, int size)

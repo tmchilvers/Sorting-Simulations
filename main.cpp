@@ -10,6 +10,7 @@
 
 
 using namespace std;
+using namespace std::chrono;
 
 int main(int argc, char const *argv[]) {
   //Try catch error for proper command line argument
