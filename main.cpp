@@ -55,6 +55,7 @@ int main(int argc, char const *argv[]) {
   InsertionSort insertionSort(data3, size);
   QuickSort quickSort(data4, 0, size - 1);
 
+  delete data, data2, data3, data4;
 
   return 0;
 }
