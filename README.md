@@ -1,4 +1,4 @@
-# assignment6
+# Sorting Simulations
 Sorting Data Structure assignment
 
 Tristan Chilvers
